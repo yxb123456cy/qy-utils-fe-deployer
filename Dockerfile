@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM node:22-alpine AS build
+FROM node:25-alpine AS build
 WORKDIR /app
 COPY . .
 RUN corepack enable && pnpm -v || npm -v &&     npm ci || npm i &&     npm run build
