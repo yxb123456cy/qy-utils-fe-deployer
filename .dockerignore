@@ -1,0 +1,8 @@
+node_modules
+dist.zip
+dist/**/*.map
+.git
+.env
+coverage
+tmp
+logs
