@@ -1,0 +1,52 @@
+{
+  "name": "fe-deployer",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Frontend deployment toolset: SSH deploy, Docker scaffolding, multi-cloud upload (OSS/MinIO/S3/COS), YAML config, notifications.",
+  "exports": {
+    ".": {
+      "import": "./dist/cli.mjs",
+      "require": "./dist/cli.js"
+    }
+  },
+  "bin": {
+    "fe-deployer": "./bin/index.js"
+  },
+  "scripts": {
+    "build": "tsup src/cli.ts --format esm --dts --out-dir dist && npm run copy-templates",
+    "dev": "tsx src/cli.ts",
+    "prepare": "npm run build",
+    "release": "npm publish --access public",
+    "copy-templates": "xcopy templates dist\\templates /s /e /y"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.8.4",
+    "@types/ali-oss": "^6.16.11",
+    "@types/inquirer": "^9.0.9",
+    "ali-oss": "^6.20.0",
+    "archiver": "^7.0.1",
+    "axios": "^1.7.2",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "cos-nodejs-sdk-v5": "^2.13.6",
+    "ejs": "^3.1.10",
+    "inquirer": "^9.3.7",
+    "js-yaml": "^4.1.0",
+    "minio": "^8.0.2",
+    "ora": "^8.0.1",
+    "ssh2": "^1.15.0",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^5.2.1",
+    "@types/archiver": "^6.0.2",
+    "@types/ejs": "^3.1.5",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.5.4",
+    "@types/ssh2": "^1.11.15",
+    "eslint": "^9.34.0",
+    "tsup": "^8.3.0",
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4"
+  }
+}
