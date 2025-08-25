@@ -34,7 +34,7 @@
     "dev": "tsx src/cli.ts",
     "prepare": "npm run build",
     "release": "npm publish --access public",
-    "copy-templates": "xcopy templates dist\\templates /s /e /y",
+    "copy-templates": "cpx \"templates/**/*\" dist/templates",
     "publish:all": "npm version patch && git push --follow-tags"
   },
   "dependencies": {
@@ -62,6 +62,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.5.4",
     "@types/ssh2": "^1.11.15",
+    "cpx": "^1.5.0",
     "eslint": "^9.34.0",
     "tsup": "^8.3.0",
     "tsx": "^4.17.0",
