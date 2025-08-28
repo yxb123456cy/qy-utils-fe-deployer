@@ -64,6 +64,42 @@ export default async function docker() {
     // 打印成功信息
     logSuccess('Docker templates generated successfully.')
   }
+  else if (projectType.appProjectType === 'java-springboot') {
+    // Java SpringBoot 项目配置（简化版）
+    const answers = await inquirer.prompt([
+      { type: 'input', name: 'appName', message: 'Application name:', default: 'spring-app' },
+      { type: 'input', name: 'javaVersion', message: 'Java version:', default: '17' },
+      { type: 'input', name: 'mavenVersion', message: 'Maven version:', default: '3.8' },
+      { type: 'input', name: 'port', message: 'Application port:', default: '8080' },
+      { type: 'input', name: 'profile', message: 'Spring profile:', default: 'prod' },
+    ])
+
+    logWarn(`user Answers:${JSON.stringify(answers)}`)
+
+    const templateDir = path.resolve(__dirname, '../templates/java')
+    const outputDir = process.cwd()
+
+    for (const file of ['Dockerfile.ejs', 'docker-compose.ejs']) {
+      const templatePath = path.join(templateDir, file)
+      const content = (await ejs.renderFile(templatePath, answers)) as string
+      fs.writeFileSync(path.join(outputDir, file.replace('.ejs', '')), content)
+    }
+
+    // Java .dockerignore
+    const dockerignore = [
+      'target/',
+      '.mvn/',
+      'mvnw',
+      'mvnw.cmd',
+      '.git',
+      '.env',
+      '*.log',
+      'logs/',
+    ].join('\n')
+    fs.writeFileSync(path.join(outputDir, '.dockerignore'), dockerignore)
+
+    logSuccess('Java SpringBoot Docker templates generated successfully.')
+  }
   else {
     // todo 后续完善golang项目以及SpringBoot项目的docker模版生成;
     logError(`Sorry, currently ${projectType.appProjectType} project is not supported`)
