@@ -1,7 +1,15 @@
 version: "3.9"
 services:
-  app:
-    build: .
-    ports:
-      - "8080:80"
-    restart: unless-stopped
+<%= appName %>:
+  build: .
+  ports:
+  - "<%= port %>:<%= port %>"
+      environment:
+      - SPRING_PROFILES_ACTIVE=<%= profile %>
+        restart: unless-stopped
+        networks:
+        - app-network
+
+        networks:
+        app-network:
+        driver: bridge
