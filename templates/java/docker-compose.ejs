@@ -1,15 +1,15 @@
 version: "3.9"
 services:
-<%= appName %>:
-  build: .
-  ports:
-  - "<%= port %>:<%= port %>"
-      environment:
+  <%= appName %>:
+    build: .
+    ports:
+      - "<%= port %>:<%= port %>"
+    environment:
       - SPRING_PROFILES_ACTIVE=<%= profile %>
-        restart: unless-stopped
-        networks:
-        - app-network
+    restart: unless-stopped
+    networks:
+      - app-network
 
-        networks:
-        app-network:
-        driver: bridge
+networks:
+  app-network:
+    driver: bridge
