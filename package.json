@@ -1,7 +1,7 @@
 {
   "name": "@qy-utils/fe-deployer",
   "type": "module",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Frontend deployment toolset: SSH deploy, Docker scaffolding, multi-cloud upload (OSS/MinIO/S3/COS), YAML config, notifications.",
   "author": "yxb123456cy <2186256471@qq.com>",
   "license": "MIT",
