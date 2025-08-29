@@ -32,6 +32,7 @@ export async function uploadByStorage(cfg: StorageConfig): Promise<void> {
   const root = path.resolve(process.cwd(), cfg.baseDir)
 
   switch (cfg.provider) {
+    // 阿里云OSS上传逻辑
     case 'oss': {
       const client = new OSS({
         region: cfg.oss!.region,
@@ -46,6 +47,7 @@ export async function uploadByStorage(cfg: StorageConfig): Promise<void> {
       }
       break
     }
+    // Minio上传逻辑
     case 'minio': {
       const m = new MinioClient({
         endPoint: cfg.minio!.endPoint,
@@ -64,6 +66,7 @@ export async function uploadByStorage(cfg: StorageConfig): Promise<void> {
       }
       break
     }
+    // AWS S3上传逻辑;
     case 's3': {
       const endPoint = cfg.s3!.endpoint || 's3.amazonaws.com'
       const useSSL = true
@@ -84,6 +87,7 @@ export async function uploadByStorage(cfg: StorageConfig): Promise<void> {
       }
       break
     }
+    // 腾讯云COS上传逻辑
     case 'cos': {
       const cos = new COS({
         SecretId: cfg.cos!.SecretId,
@@ -104,5 +108,6 @@ export async function uploadByStorage(cfg: StorageConfig): Promise<void> {
       }
       break
     }
+      // todo 实现 百度云Bos上传逻辑
   }
 }

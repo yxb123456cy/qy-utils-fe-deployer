@@ -33,6 +33,7 @@
     "build": "tsup src/cli.ts  --dts --out-dir dist && npm run copy-templates",
     "dev": "tsx src/cli.ts",
     "prepare": "npm run build",
+    "test": "vitest",
     "release": "npm publish --access public",
     "copy-templates": "cpx \"templates/**/*\" dist/templates",
     "publish:all": "npm version patch && git push --follow-tags"
@@ -66,6 +67,7 @@
     "eslint": "^9.34.0",
     "tsup": "^8.3.0",
     "tsx": "^4.17.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "vitest": "^3.2.4"
   }
 }

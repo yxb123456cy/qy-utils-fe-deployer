@@ -1,4 +1,5 @@
 import { Command } from 'commander'
+import packageJson from '../package.json' assert { type: 'json' }
 import deploy from './commands/deploy.js'
 import docker from './commands/docker.js'
 import upload from './commands/upload.js'
@@ -8,7 +9,7 @@ const program = new Command()
 program
   .name('fe-deployer')
   .description('Frontend deployment toolset')
-  .version('1.0.0')
+  .version(packageJson.version)
 
 program
   .command('deploy')

@@ -11,7 +11,7 @@ export interface EnvConfig {
 }
 
 export interface StorageConfig {
-  provider: 'oss' | 'minio' | 's3' | 'cos' | 'kodo'
+  provider: 'oss' | 'minio' | 's3' | 'cos' | 'bos'
   baseDir: string
   oss?: {
     region: string
