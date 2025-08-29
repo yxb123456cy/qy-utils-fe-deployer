@@ -12,6 +12,7 @@ import { logWarn } from './../utils/logger'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
+// 暂时先只实现Node.js项目 web前端项目 SpringBoot项目 Golang项目的Docker模板生成
 export default async function docker() {
   const projectType = await inquirer.prompt([{
     type: 'list',
@@ -73,18 +74,14 @@ export default async function docker() {
       { type: 'input', name: 'port', message: 'Application port:', default: '8080' },
       { type: 'input', name: 'profile', message: 'Spring profile:', default: 'prod' },
     ])
-
     logWarn(`user Answers:${JSON.stringify(answers)}`)
-
     const templateDir = path.resolve(__dirname, '../templates/java')
     const outputDir = process.cwd()
-
     for (const file of ['Dockerfile.ejs', 'docker-compose.ejs']) {
       const templatePath = path.join(templateDir, file)
       const content = (await ejs.renderFile(templatePath, answers)) as string
       fs.writeFileSync(path.join(outputDir, file.replace('.ejs', '')), content)
     }
-
     // Java .dockerignore
     const dockerignore = [
       'target/',
@@ -97,7 +94,6 @@ export default async function docker() {
       'logs/',
     ].join('\n')
     fs.writeFileSync(path.join(outputDir, '.dockerignore'), dockerignore)
-
     logSuccess('Java SpringBoot Docker templates generated successfully.')
   }
   else {

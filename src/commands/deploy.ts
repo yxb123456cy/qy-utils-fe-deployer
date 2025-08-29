@@ -6,6 +6,7 @@ import { logError, logSuccess } from '../utils/logger.js'
 import { notifyAll } from '../utils/notifier.js'
 import { createConnectConfig, runRemoteCommands, uploadAndUnzip } from '../utils/ssh.js'
 
+// 先只实现Docker容器化部署;
 export default async function deploy(opts: { env: string }) {
   const spinner = ora(`Deploying to ${opts.env}...`).start()
   let success = false

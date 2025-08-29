@@ -4,7 +4,7 @@ import { logSuccess } from '../utils/logger.js'
 import { notifyAll } from '../utils/notifier.js'
 import { uploadByStorage } from '../utils/storage.js'
 import { logError } from './../utils/logger'
-
+// 先只实现阿里云OSS 腾讯云COS 七牛云KODO MINIO这四种云存储上传;
 export default async function upload(opts: { target?: string, env?: string }) {
   const envName = opts.env || 'dev'
   const spinner = ora(`Uploading artifacts for ${envName}...`).start()

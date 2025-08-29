@@ -9,7 +9,4 @@ export const logWarn = (msg: string) => console.warn(chalk.yellow(msg))
 // 打印error失败日志 红色;
 export const logError = (msg: string) => console.warn(chalk.red(msg))
 
-// logInfo('hello,Node.js')
-// logSuccess('hello,Node.js')
-// logWarn('hello,Node.js')
-// logError('hello,Node.js')
+

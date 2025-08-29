@@ -1,4 +1,4 @@
-import type { NotifyChannel } from './config'
+import type { NotifyChannel } from '../types'
 import axios from 'axios'
 
 export interface NotifyPayload {

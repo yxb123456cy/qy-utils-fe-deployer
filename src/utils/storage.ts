@@ -1,10 +1,10 @@
-import type { StorageConfig } from './config.js'
+import type { StorageConfig } from '../types'
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
 import OSS from 'ali-oss'
-import COS from 'cos-nodejs-sdk-v5'
 
+import COS from 'cos-nodejs-sdk-v5'
 import { Client as MinioClient } from 'minio'
 
 async function walkFiles(dir: string): Promise<string[]> {
